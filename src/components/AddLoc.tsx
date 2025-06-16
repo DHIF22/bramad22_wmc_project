@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import type {TLocation} from "../common/modules.ts";
+import Navbar from "./Navbar.tsx";
 interface AddProps {
     locations: TLocation[];
     setLocations: (list: TLocation[]) => void;
@@ -51,22 +52,21 @@ const AddLoc: React.FC<AddProps> = (Props) => {
     return (
         <>
             <div>
-                <button onClick={() => setIsOpen(true)}>Find Location</button>
+                <Navbar setIsOpen={setIsOpen}/>
 
                 {isOpen && (
                     <div id="popup_window">
-                        <h2>Ort hinzufügen</h2>
+                        <h2 id="popup_h2">Ort hinzufügen</h2>
                         <input
                             type="text"
                             value={locationName}
                             placeholder="Stadt, Land"
-                            id="locationNameInput"
+                            id="popup_input"
                             onChange={(e) => setLocationName(e.target.value)}
                         />
-                        <br />
-                        <button onClick={addLoc}
+                        <button onClick={addLoc} id="popup_button1"
                         >Hinzufügen</button>
-                        <button onClick={() => setIsOpen(false)}>Abbrechen</button>
+                        <button onClick={() => setIsOpen(false)} id="popup_button2">Abbrechen</button>
                     </div>
                 )}
             </div>

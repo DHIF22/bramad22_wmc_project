@@ -12,7 +12,7 @@ const LocationList: React.FC<LocationListProps> = (Props) => {
 
     return (
         <>
-            <div>
+            <div id="allLocations">
                 {locations.map((loc: TLocation, index: number) => (
                     <Location loc={loc} key={index}/>
                 ))}
