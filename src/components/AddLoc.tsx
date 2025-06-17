@@ -4,19 +4,20 @@ import Navbar from "./Navbar.tsx";
 interface AddProps {
     locations: TLocation[];
     setLocations: (list: TLocation[]) => void;
+    setShownLocations: (list: TLocation[]) => void;
 }
 
 
 const AddLoc: React.FC<AddProps> = (Props) => {
 
-    const {locations, setLocations} = Props;
+    const {locations, setLocations, setShownLocations} = Props;
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [locationName, setLocationName] = useState("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isNotFound, setisNotFound] = useState<boolean>(false);
+    const [locationName, setLocationName] = useState<string>("");
 
 
     const addLoc = () => {
-        setIsOpen(false);
         addNewLoc();
     };
 
@@ -31,8 +32,10 @@ const AddLoc: React.FC<AddProps> = (Props) => {
                         latitude: data[0].lat
                     });
                     setLocations([...locations]);
+                    setisNotFound(false)
+                    setIsOpen(false);
                 } else {
-                    console.error("NO LOCATION FOUND");
+                    setisNotFound(true);
                 }
             })
             .catch(err => console.error("ERROR: ", err));
@@ -53,9 +56,8 @@ const AddLoc: React.FC<AddProps> = (Props) => {
 
     return (
         <>
+            <Navbar setIsOpen={setIsOpen} setShownLocations={setShownLocations} allLocations={locations}/>
             <div>
-                <Navbar setIsOpen={setIsOpen}/>
-
                 {isOpen && (
                     <div id="popup_window">
                         <h2 id="popup_h2">Ort hinzufügen</h2>
@@ -66,9 +68,18 @@ const AddLoc: React.FC<AddProps> = (Props) => {
                             id="popup_input"
                             onChange={(e) => setLocationName(e.target.value)}
                         />
-                        <button onClick={addLoc} id="popup_button1"
-                        >Hinzufügen</button>
-                        <button onClick={() => setIsOpen(false)} id="popup_button2">Abbrechen</button>
+                        <button onClick={addLoc} id="popup_button1">Hinzufügen</button>
+                        <button
+                        onClick={() => {
+                            setIsOpen(false);
+                            setisNotFound(false);
+                        }}
+                                id="popup_button2">Abbrechen
+                        </button>
+
+                        {isNotFound && (
+                            <p id="errorMessage">Location not found!</p>
+                        )}
                     </div>
                 )}
             </div>

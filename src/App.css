@@ -20,15 +20,23 @@ body {
 
   gap: 10px;
 
+  height: fit-content;
+
   position: fixed;
   top: 20%;
   left: 50%;
   transform: translate(-50%, 0);
   padding: 1%;
-  background-color: rgba(255, 255, 255, 0.88);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   color: black;
   box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+#errorMessage {
+  color: red;
+  font-weight: 500;
+  text-align: center;
 }
 
 #popup_h2 {
@@ -40,6 +48,9 @@ body {
 #popup_input {
   grid-row: 2/3;
   grid-column: 1/3;
+
+  background-color: white;
+  color: black;
 
   padding: 5px;
 }
@@ -120,6 +131,26 @@ body {
 
   grid-column: 1/4;
   grid-row: 1/2;
+
+  display: flex;
+}
+
+#locHeader {
+  width: 100%;
+}
+
+#delButton {
+  position: absolute;
+  background-color: unset;
+  padding: 0;
+  font-size: 25px;
+  transition: 0.2s;
+}
+
+#delButton:hover {
+  color: #f87979;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 #firstWeather {
@@ -184,6 +215,30 @@ body {
   font-style: italic;
 }
 
+#searchBar {
+  background-color: unset;
+  border: none;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  font-size: 20px;
+  color: black;
+
+  width: 200px;
+}
+
+#searchBarContainer {
+  height: fit-content;
+  align-self: end;
+  border-bottom: black 2px solid;
+  color: black;
+  font-size: 20px;
+}
+
+#searchBar:focus {
+  outline: none;
+
+}
 
 h3 {
   text-align: center;
