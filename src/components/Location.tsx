@@ -4,11 +4,12 @@ import useWeather from "../hooks/useWeather.tsx";
 
 interface LocationProps{
     loc: TLocation;
+    removeLoc: (loc: TLocation) => void;
 }
 
 const Location: React.FC<LocationProps> = (Props) => {
 
-    const {loc} = Props;
+    const {loc, removeLoc} = Props;
 
     const weather = useWeather(loc);
 

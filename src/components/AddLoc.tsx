@@ -31,6 +31,8 @@ const AddLoc: React.FC<AddProps> = (Props) => {
                         latitude: data[0].lat
                     });
                     setLocations([...locations]);
+                } else {
+                    console.error("NO LOCATION FOUND");
                 }
             })
             .catch(err => console.error("ERROR: ", err));

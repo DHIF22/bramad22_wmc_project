@@ -17,11 +17,15 @@ function App() {
             setLocations([...locations]);
         }
     }, [currentLoc]);
-    
+
+    const removeLoc = (remLoc: TLocation) => {
+        setLocations(locations.filter(loc => loc.name != remLoc.name));
+    }
+
     return (
     <>
         <AddLoc locations={locations} setLocations={setLocations}/>
-        <LocationList locations={locations}/>
+        <LocationList locations={locations} removeLoc={removeLoc}/>
     </>
   )
 }

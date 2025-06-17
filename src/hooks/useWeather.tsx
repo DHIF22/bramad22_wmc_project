@@ -60,8 +60,9 @@ function useWeather(loc: TLocation) {
                         }
                     }
                 )
-
-
+            })
+            .catch(err => {
+                console.error("ERROR: ", err);
             });
     }, []);
 
